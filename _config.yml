@@ -5,6 +5,7 @@ description: 专注Java开源架构，资深技术顾问
 
 # url is currently only used only for the RSS feed in feed.xml
 url: http://ligson.github.io
+#url: http://127.0.0.1:4000//
 
 # baseurl will often be '', but for a project page on gh-pages, it needs to
 # be the project name.
@@ -12,13 +13,13 @@ url: http://ligson.github.io
 #     run it like so: jekyll serve --baseurl=''
 baseurl: '/'
 ## default date_format
-date_format: 
+date_format:
   title: "%B-%-d-%Y"
   archive: "%b"
   categories: "%b-%Y"
   tag: "%b-%Y"
 # Language
-lan: "en" 
+lan: "en"
 
 paginate: 10
 
