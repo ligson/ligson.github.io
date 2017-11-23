@@ -18,17 +18,16 @@ layout: default
         {{ post.date | date: "%Y" }}
         -->
         {% assign date_format = site.date_format.title %}
-        {{ post.date | date: date_format }}
+        {{ post.date|date:site.date_format.title}}
     </span>
-    
     <h2>
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </h2>
-    
+
     <div class="post-description">
         {{ post.description }}
     </div>
-    
+
 </div>
 {% endfor %}
 
