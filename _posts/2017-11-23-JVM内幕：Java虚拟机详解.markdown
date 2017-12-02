@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "JVM内幕：Java虚拟机详解"
-categories: Other
-tags: Other
+categories: Java
+tags: jvm
 author: ligson
 description: 这篇文章解释了Java 虚拟机（JVM）的内部架构。下图显示了遵守 Java SE 7 规范的典型的 JVM 核心内部组件。
 ---

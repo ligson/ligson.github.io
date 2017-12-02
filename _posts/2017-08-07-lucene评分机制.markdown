@@ -1,0 +1,63 @@
+---
+layout: post
+title:  "lucene评分机制"
+date:   2017-09-05 14:10:51 +0800
+categories: Java
+tags: 搜索
+description: lucene评分机制
+---
+# lucene评分机制
+
+## 公式
+
+![公式]({{ site.baseurl }}/assets/postimg/1.png)
+
+*tf(t in d)* 关联到项频率，项频率是指 项 t 在 文档 d 中出现的次数 frequency。默认的实现是：
+
+```
+  tf(t in d) =	frequency½
+```
+
+*idf(t)* 关联到反转文档频率，文档频率指出现 项 t 的文档数 docFreq。docFreq 越少 idf 就越高（物以稀为贵），但在同一个查询下些值是相同的。默认实现：
+
+```
+  idf(t) =	1 + log (
+    numDocs
+    –––––––––
+    docFreq+1
+    )
+```
+
+*coord(q,d)* 评分因子，是基于文档中出现查询项的个数。越多的查询项在一个文档中，说明些文档的匹配程序越高。默认是出现查询项的百分比。
+
+(q)查询的标准查询，使不同查询之间可以比较。此因子不影响文档的排序，因为所有有文档都会使用此因子。默认值：
+
+```
+  queryNorm(q)   =   queryNorm(sumOfSquaredWeights) =
+  1
+  ––––––––––––––
+  sumOfSquaredWeights½
+```
+
+  每个查询项权重的平分方和(sumOfSquaredWeights)由 Weight 类完成。例如 BooleanQuery 地计算：
+  sumOfSquaredWeights =   q.getBoost() 2 ·	∑	( idf(t) ·  t.getBoost() ) 2
+  t in q
+
+*t.getBoost()* 查询时期的 项 t 加权（如：java^1.2），或者由程序使用 setBoost()。
+
+*norm(t,d)* 压缩几个索引期间的加权和长度因子：
+
+  Document boost - 文档加权，在索引之前使用 doc.setBoost()
+
+  Field boost - 字段加权，也在索引之前调用 field.setBoost()
+
+  lengthNorm(field) - 由字段内的 Token 的个数来计算此值，字段越短，评分越高，在做索引的时候由 Similarity.lengthNorm 计算。
+
+以上所有因子相乘得出 norm 值，如果文档中有相同的字段，它们的加权也会相乘：
+
+```
+  norm(t,d)   =   doc.getBoost() ·lengthNorm(field) ·	∏	f.getBoost()
+  field f in d named as t
+```
+
+索引的时候，把 norm 值压缩(encode)成一个 byte 保存在索引中。搜索的时候再把索引中 norm 值解压(decode)成一个 float 值，这个 encode/decode 由 Similarity 提供。官方说：这个过程由于精度问题，以至不是可逆的，如：decode(encode(0.89)) = 0.75。
