@@ -15,10 +15,10 @@ baseurl: ''
 ## default date_format
 date_format:
   #title: "%B-%-d-%Y"
-  title: "%m-%d-%Y"
-  archive: "%b"
-  categories: "%b-%Y"
-  tag: "%b-%Y"
+  title: "%Y-%m-%d"
+  archive: "%m"
+  categories: "%Y-%m-%d"
+  tag: "%Y-%m-%d"
 # Language
 lan: "cn"
 
@@ -26,6 +26,6 @@ paginate: 10
 
 highlighter: rouge
 markdown: kramdown
-gems: ['jekyll-paginate']
+plugins: ['jekyll-paginate']
 
 exclude: ['README.md', 'LICENSE', "*.bak"]

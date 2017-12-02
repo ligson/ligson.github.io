@@ -3,12 +3,26 @@ layout: default
 ---
 {% assign trans = site.data.values[site.lan] %}
 <div class="well article">
-        <h2><a href="{{ site.baseurl}}{{ page.url }}">{{ page.title }}</a></h2>
-        <span class="post-date">
+        <h3><a href="{{ site.baseurl}}{{ page.url }}">{{ page.title }}</a></h3>
+        <span class="article-date">
             {% assign date_format = site.date_format.title %}
-            {{ page.date | date: date_format }}
+            {{ page.date | date: "%Y-%m-%d" }}
         </span>
+
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style_24x24 artilce-share">
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_renren"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
         <hr style="border-top:1px solid #28323C;"/>
+
     {% if site.comments and page.comments %}
         {% if site.disqus != '' %}
         <p class="author"><a href="#disqus_thread" data-disqus-identifier="{{ page.url | slugify }}">Comments</a></p>
@@ -26,28 +40,28 @@ layout: default
       <li><i class="icon-folder-open"></i></li>
       {% assign categories_list = page.categories %}
       {% if categories_list.first[0] == null %}
-        {% for category in categories_list %} 
+        {% for category in categories_list %}
             <li class="icon-style"><a href="{{ site.baseurl }}/categories.html">
                 {{ category | join: "/" }} <span>({{ site.categories[category].size }})</span>
                 {% unless forloop.last %},{% endunless %}
             </a></li>
         {% endfor %}
       {% else %}
-        {% for category in categories_list %} 
+        {% for category in categories_list %}
             <li class="icon-style"><a href="{{ site.baseurl }}/categories.html">
                 {{ category[0] | join: "/" }} <span>/{{ category[1].size }})</span>
             </a></li>
         {% endfor %}
       {% endif %}
     </ul>
-    {% endunless %}  
+    {% endunless %}
 
     {% unless page.tags == empty %}
     <ul class="list-unstyled list-inline">
       <li><i class="icon-tags"></i></li>
       {% assign tags_list = page.tags %}
       {% if tags_list.first[0] == null %}
-        {% for tag in tags_list %} 
+        {% for tag in tags_list %}
             <li class="icon-style">
                 <a href="{{ site.baseurl }}/tags.html">
                 {{ tag }} <span>({{ site.tags[tag].size }})</span>
@@ -56,19 +70,19 @@ layout: default
             </li>
         {% endfor %}
       {% else %}
-        {% for tag in tags_list %} 
+        {% for tag in tags_list %}
             <li class="icon-style">
                 <a href="{{ site.baseurl }}/tags.html">
                     {{ tag[0] }} <span>({{ tag[1].size }})</span>
                     {% unless forloop.last %},{% endunless %}
                 </a>
             </li>
-           
+
         {% endfor %}
       {% endif %}
       {% assign tags_list = nil %}
     </ul>
-    {% endunless %}  
+    {% endunless %}
 
     </div>
     {% if page.comments %}

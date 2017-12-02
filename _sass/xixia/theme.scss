@@ -52,9 +52,15 @@ body {
     color: $side-bar-a-color;
 }
 
+.sidebar ul{
+  padding: 0;
+}
 .sidebar li {
+    list-style: none;
     margin-top: .7em;
     line-height: 1em;
+    white-space:nowrap;
+    overflow: hidden;
 }
 
 .sidebar a:hover {
@@ -91,19 +97,26 @@ body {
 	color: $article-a-hover-color;
 }
 
+.artilce-share{
+    float: right;
+    margin-right: 50px;
+}
 .icon-style {
     font-size: 13px;
 }
 
-.post-date {
+.post-date,.post-categories,.post-tags {
 	text-transform: uppercase;
 	font-size: 14px;
-	letter-spacing: 3px;
+}
+.post-date{
+  float: right;
+  margin-right: 25px;
 }
 
-/* 
+/*
     custom bootstrap navbar
-    reference from: https://stackoverflow.com/questions/18529274/change-navbar-color-in-twitter-bootstrap-3 
+    reference from: https://stackoverflow.com/questions/18529274/change-navbar-color-in-twitter-bootstrap-3
 */
 .navbar-custom {
     background-color: $nav-bar-background-color;

@@ -5,7 +5,51 @@ layout: default
 {% for post in paginator.posts %}
 <div class="well article">
 
-    <span class="post-date">
+    <h4>
+        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+    </h4>
+     <div class="post-description">
+        {{ post.description }}
+    </div>
+    <div class="post-bottom">
+
+        <!--categories-->
+        {% assign categories_list = post.categories %}
+        <span class="post-categories"><i class="icon-folder-open"></i>
+        {% if categories_list.first[0] == null %}
+        {% for category in categories_list %} 
+            <a href="{{ site.baseurl }}/categories.html">
+                {{ category | join: "/" }}
+                {% unless forloop.last %},{% endunless %}
+            </a>
+        {% endfor %}
+      {% else %}
+        {% for category in categories_list %} 
+            <a href="{{ site.baseurl }}/categories.html">
+                {{ category[0] | join: "/" }} <span>/{{ category[1].size }})</span>
+            </a>
+        {% endfor %}
+      {% endif %}
+      </span>
+      &nbsp;&nbsp;
+      <!--tags-->
+      {% assign tags_list = post.tags %}
+      <span class="post-tags"><i class="icon-tags"></i>
+      {% if tags_list.first[0] == null %}
+        {% for tag in tags_list %} 
+                <a href="{{ site.baseurl }}/tags.html">{{ tag }}{% unless forloop.last %},{% endunless %}</a>
+        {% endfor %}
+      {% else %}
+        {% for tag in tags_list %} 
+                <a href="{{ site.baseurl }}/tags.html">{{ tag[0] }}{% unless forloop.last %},{% endunless %}</a>
+        {% endfor %}
+      {% endif %}
+      {% assign tags_list = nil %}
+      </span>
+
+      <!--date-->
+      <span class="post-date">
+        <i class="icon-time"></i>
         <!--
         {% assign d = post.date | date: "%d" | plus:'0' %}
         {{ post.date | date: "%B" }}
@@ -18,16 +62,9 @@ layout: default
         {{ post.date | date: "%Y" }}
         -->
         {% assign date_format = site.date_format.title %}
-        {{ post.date|date:site.date_format.title}}
-    </span>
-    <h2>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-    </h2>
-
-    <div class="post-description">
-        {{ post.description }}
+        {{ post.date|date:"%Y-%m-%d"}}
+      </span>
     </div>
-
 </div>
 {% endfor %}
 
