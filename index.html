@@ -17,14 +17,14 @@ layout: default
         {% assign categories_list = post.categories %}
         <span class="post-categories"><i class="icon-folder-open"></i>
         {% if categories_list.first[0] == null %}
-        {% for category in categories_list %} 
+        {% for category in categories_list %}
             <a href="{{ site.baseurl }}/categories.html">
                 {{ category | join: "/" }}
                 {% unless forloop.last %},{% endunless %}
             </a>
         {% endfor %}
       {% else %}
-        {% for category in categories_list %} 
+        {% for category in categories_list %}
             <a href="{{ site.baseurl }}/categories.html">
                 {{ category[0] | join: "/" }} <span>/{{ category[1].size }})</span>
             </a>
@@ -36,11 +36,11 @@ layout: default
       {% assign tags_list = post.tags %}
       <span class="post-tags"><i class="icon-tags"></i>
       {% if tags_list.first[0] == null %}
-        {% for tag in tags_list %} 
+        {% for tag in tags_list %}
                 <a href="{{ site.baseurl }}/tags.html">{{ tag }}{% unless forloop.last %},{% endunless %}</a>
         {% endfor %}
       {% else %}
-        {% for tag in tags_list %} 
+        {% for tag in tags_list %}
                 <a href="{{ site.baseurl }}/tags.html">{{ tag[0] }}{% unless forloop.last %},{% endunless %}</a>
         {% endfor %}
       {% endif %}
@@ -71,13 +71,13 @@ layout: default
 <div class="pagination">
   {% if paginator.previous_page %}
       {% if paginator.previous_page == 1 %}
-        <a class="btn btn-default" href="{{ site.baseurl}}/index.html" class="previous">Newer</a>
+        <a class="btn btn-default" href="{{ site.baseurl}}/index.html" class="previous">最新</a>
       {% else %}
-        <a class="btn btn-default" href="{{ site.baseurl}}/page{{ paginator.previous_page }}" class="previous">Newer</a>
+        <a class="btn btn-default" href="{{ site.baseurl}}/page{{ paginator.previous_page }}" class="previous">最新</a>
       {% endif %}
   {% endif %}
   <span class="page_number ">{{ trans.page }}: {{ paginator.page }} of {{ paginator.total_pages }}</span>
   {% if paginator.next_page %}
-    <a class="btn btn-default" href="{{ site.baseurl}}/page{{ paginator.next_page }}" class="next">Older</a>
+    <a class="btn btn-default" href="{{ site.baseurl}}/page{{ paginator.next_page }}" class="next">以前</a>
   {% endif %}
 </div>
