@@ -4,7 +4,8 @@ name: 沙舟狼客的博客
 description: 专注Java开源架构、技术顾问
 
 # url is currently only used only for the RSS feed in feed.xml
-url: https://ligson.github.io
+#url: https://ligson.github.io
+url: https://www.ligson.com
 #url: http://127.0.0.1:4000//
 
 # baseurl will often be '', but for a project page on gh-pages, it needs to
