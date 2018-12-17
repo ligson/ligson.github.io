@@ -405,8 +405,30 @@ description: centos7安装部署k8s并进行service外部映射
     2. 在master上执行:elinks --dump http://192.168.1.7:30080结果同上
     
 
-12. 遗留问题
+12. 过程中问题
     
-    1. node1和node2各自访问elinks --dump http://127.0.0.1:30080 时好时坏
+    1. node1和node2各自访问elinks --dump http://127.0.0.1:30080 时好时坏,使用ip 不能相互访问
+        
+        ```
+        解决办法:
+        检查4.iii步骤是否设置
+        ```
+    2. 使用命令无法进入容器
     
-    2. 如果使用ip 不能相互访问
+        1. 现象
+        
+        ```bash
+        
+        [root@master ~]# kubectl exec -it nginx-1838792130-qtgdp -- /bin/bash
+        
+        rpc error: code = 2 desc = oci runtime error: exec failed: container_linux.go:247: starting container process caused "process_linux.go:110: decoding init error from pipe caused \"read parent: connection reset by peer\""
+        
+        或者在node上执行命令:
+        docker exec -it nginx /bin/bash
+        ```
+        
+        2. 解决办法: docker版本问题
+        
+        ```bash
+        yum downgrade docker-1.13.1-75.git8633870.el7.centos.x86_64 docker-client-1.13.1-75.git8633870.el7.centos.x86_64 docker-common-1.13.1-75.git8633870.el7.centos.x86_64
+        ```
