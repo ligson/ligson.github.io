@@ -34,3 +34,4 @@ exclude: ['README.md', 'LICENSE', "*.bak"]
 comment_gitment_repo: https://github.com/ligson/ligson.github.io
 comment_gitment_clientId: 421127a0196d78f31147
 comment_gitment_clientSecret: dd6eff2aff1c8002106e1e7a655bd9dfc8a853e0
+github_username: ligson
