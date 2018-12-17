@@ -4,7 +4,7 @@ name: ligson的博客
 description: 专注Java开源架构、技术顾问
 
 # url is currently only used only for the RSS feed in feed.xml
-url: http://ligson.github.io
+url: https://ligson.github.io
 #url: http://127.0.0.1:4000//
 
 # baseurl will often be '', but for a project page on gh-pages, it needs to
@@ -29,3 +29,8 @@ markdown: kramdown
 plugins: ['jekyll-paginate']
 
 exclude: ['README.md', 'LICENSE', "*.bak"]
+
+#gitment
+comment_gitment_repo: https://github.com/ligson/ligson.github.io
+comment_gitment_clientId: 421127a0196d78f31147
+comment_gitment_clientSecret: dd6eff2aff1c8002106e1e7a655bd9dfc8a853e0

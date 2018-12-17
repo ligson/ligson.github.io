@@ -85,16 +85,24 @@ layout: default
     {% endunless %}
 
     </div>
-    {% if page.comments %}
-        {% if site.disqus != '' %}
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div>
-        {% elsif site.isso != '' %}
-        <section id="isso-thread"></section>
-        {% endif %}
+    {% if site.comment_gitment_repo %}
+    <div id="gitmentContainer"></div>
+    <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+    <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: '<%= page.date %>',
+            owner: '{{site.github_username}}',
+            repo: '{{site.comment_gitment_repo}}',
+            oauth: {
+                client_id: '{{site.comment_gitment_clientId}}',
+                client_secret: '{{site.comment_gitment_clientSecret}}',
+            },
+        });
+        gitment.render('gitmentContainer')
+    </script>
     {% endif %}
+
 </div>
 <div class="pagination">
     {% if page.next %}
@@ -104,3 +112,4 @@ layout: default
     <a class="btn btn-default" href="{{ site.baseurl}}{{ page.previous.url }}" class="previous">{{ trans.older_post }}</a>
     {% endif %}
 </div>
+
