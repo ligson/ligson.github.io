@@ -27,6 +27,25 @@ description: centos7安装部署k8s并进行service外部映射
         ```bash
         yum install -y etcd kubernetes-node ntp flannel docker
         ```
+    
+    3. 软件版本
+    
+        ```bash
+        [root@master ~]# kubectl --version
+        Kubernetes v1.5.2
+        
+        [root@master ~]# etcd --version
+        etcd Version: 3.2.22
+        Git SHA: 1674e68
+        Go Version: go1.9.4
+        Go OS/Arch: linux/amd64
+        
+        [root@master ~]# flanneld --version
+        0.7.1
+        
+        [root@node1 ~]# docker --version
+        Docker version 1.13.1, build 8633870/1.13.1
+        ```
 3. 做成系统服务
     
     1. master
