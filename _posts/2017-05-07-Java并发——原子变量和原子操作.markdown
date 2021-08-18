@@ -11,7 +11,7 @@ description: 很多情况下我们只是需要一个简单的、高效的、线�
 
 &emsp;&emsp;通常情况下，在Java里面，++i或者--i不是线程安全的，这里面有三个独立的操作：获得变量当前值，为该值+1/-1，然后写回新的值。在没有额外资源可以利用的情况下，只能使用加锁才能保证读-改-写这三个操作是“原子性”的。
 
-&emsp;&emsp;Java 5新增了AtomicInteger类，该类包含方法getAndIncrement()以及getAndDecrement()，这两个方法实现了原子加以及原子减操作，但是比较不同的是这两个操作没有使用任何加锁机制，属于无锁操作。      
+&emsp;&emsp;Java 5新增了AtomicInteger类，该类包含方法getAndIncrement()以及getAndDecrement()，这两个方法实现了原子加以及原子减操作，但是比较不同的是这两个操作没有使用任何加锁机制，属于无锁操作。 1     
 
 &emsp;&emsp;在JDK 5之前Java语言是靠synchronized关键字保证同步的，这会导致有锁（后面的章节还会谈到锁）。锁机制存在以下问题：
 
